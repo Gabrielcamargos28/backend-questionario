@@ -19,12 +19,18 @@ public class QuestaoService {
 
     //Questao questao = questaoRepository.findById(dados.questaoId).orElseThrow(() -> new EntityNotFoundException("Questao não encontrada"))
     public void criarQuestao(DadosCriarQuestao dados){
-
         Questionario questionario = questionarioRepository.findById(dados.idQuestionario())
                 .orElseThrow( () -> new EntityNotFoundException("Questionario não encontrado"));
 
         Questao questao = new Questao(dados, questionario);
 
         questaoRepository.save(questao);
+    }
+
+    public void removerQuestao(Long id){
+        Questao questao = questaoRepository.findById(id)
+                .orElseThrow( () -> new EntityNotFoundException("Questao não encontrada"));
+
+        questaoRepository.delete(questao);
     }
 }

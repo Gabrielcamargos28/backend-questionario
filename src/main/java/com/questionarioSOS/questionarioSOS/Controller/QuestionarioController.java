@@ -24,7 +24,7 @@ public class QuestionarioController {
         return ResponseEntity.ok().body(new Resposta().sucesso("Questionario iniciado com sucesso"));
     }
 
-    @PostMapping("/adicionar-questoes")
+    @PutMapping("/adicionar-questoes")
     public ResponseEntity adicionarQuestoes(@RequestBody DadosAdicionarQuestoes dados){
 
         questionarioService.adicionarQuestoes(dados);
