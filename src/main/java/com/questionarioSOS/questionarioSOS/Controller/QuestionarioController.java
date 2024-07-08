@@ -1,6 +1,6 @@
 package com.questionarioSOS.questionarioSOS.Controller;
 
-import com.questionarioSOS.questionarioSOS.domain.DadosRemoverQuestoes;
+import com.questionarioSOS.questionarioSOS.domain.questionario.DadosRemoverQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosAdicionarQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosDetalhamentoQuestionario;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosIniciarFormulario;

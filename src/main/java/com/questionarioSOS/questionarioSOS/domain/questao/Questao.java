@@ -2,11 +2,14 @@ package com.questionarioSOS.questionarioSOS.domain.questao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
+import com.questionarioSOS.questionarioSOS.domain.resposta.Resposta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_questao")
@@ -26,6 +29,9 @@ public class Questao {
     @ManyToOne
     @JoinColumn(name = "id_questionario")
     private Questionario questionario;
+
+    @OneToMany
+    private Set<Resposta> respostas;
 
     public Questao(DadosCriarQuestao dados, Questionario questionario) {
         this.nome = dados.nome();

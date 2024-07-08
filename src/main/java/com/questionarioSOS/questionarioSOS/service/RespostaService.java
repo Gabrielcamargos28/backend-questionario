@@ -7,6 +7,8 @@ import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
 import com.questionarioSOS.questionarioSOS.domain.questionario.QuestionarioRepository;
 import com.questionarioSOS.questionarioSOS.domain.resposta.Resposta;
 import com.questionarioSOS.questionarioSOS.domain.resposta.RespostaRepository;
+import com.questionarioSOS.questionarioSOS.domain.usuario.Usuario;
+import com.questionarioSOS.questionarioSOS.domain.usuario.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +22,15 @@ public class RespostaService {
     private QuestaoRepository questaoRepository;
     @Autowired
     private QuestionarioRepository questionarioRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public void responderQuestao(DadosRespostaQuestao dados){
         Questao questao = questaoRepository.findById(dados.idQuestao())
                 .orElseThrow( () -> new EntityNotFoundException("Questao não encontrada"));
-        Resposta resposta = new Resposta(dados.resposta(), questao);
+        Usuario usuario = usuarioRepository.findById(dados.idUsuario())
+                .orElseThrow(()-> new EntityNotFoundException("Usuario não encontrado"));
+        Resposta resposta = new Resposta(dados.resposta(), questao, usuario);
 
         respostaRepository.save(resposta);
     }

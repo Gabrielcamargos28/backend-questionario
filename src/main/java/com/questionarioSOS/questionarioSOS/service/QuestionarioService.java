@@ -1,6 +1,6 @@
 package com.questionarioSOS.questionarioSOS.service;
 
-import com.questionarioSOS.questionarioSOS.domain.DadosRemoverQuestoes;
+import com.questionarioSOS.questionarioSOS.domain.questionario.DadosRemoverQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questao.Questao;
 import com.questionarioSOS.questionarioSOS.domain.questao.QuestaoRepository;
 import com.questionarioSOS.questionarioSOS.domain.questionario.*;

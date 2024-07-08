@@ -1,6 +1,7 @@
 package com.questionarioSOS.questionarioSOS.domain.resposta;
 
 import com.questionarioSOS.questionarioSOS.domain.questao.Questao;
+import com.questionarioSOS.questionarioSOS.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,10 +22,14 @@ public class Resposta {
     @ManyToOne
     @JoinColumn(name = "id_questao")
     private Questao questao;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 
 
-    public Resposta(String resposta, Questao questao) {
+    public Resposta(String resposta, Questao questao, Usuario usuario) {
         this.resposta = resposta;
         this.questao = questao;
+        this.usuario = usuario;
     }
 }

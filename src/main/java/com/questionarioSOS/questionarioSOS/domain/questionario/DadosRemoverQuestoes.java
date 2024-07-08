@@ -1,4 +1,4 @@
-package com.questionarioSOS.questionarioSOS.domain;
+package com.questionarioSOS.questionarioSOS.domain.questionario;
 
 import java.util.Set;
 
