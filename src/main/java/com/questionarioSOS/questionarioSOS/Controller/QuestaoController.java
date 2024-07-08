@@ -17,12 +17,12 @@ public class QuestaoController {
 
         questaoService.criarQuestao(dados);
 
-        return ResponseEntity.ok().body(new Resposta().sucesso("Questao criada"));
+        return ResponseEntity.ok().body(new RespostaApi().sucesso("Questao criada"));
     }
     @DeleteMapping("/remover-questao/{id}")
     public ResponseEntity removerQuestao(@PathVariable Long id){
         questaoService.removerQuestao(id);
 
-        return  ResponseEntity.ok().body(new Resposta().sucesso("Questao removida"));
+        return  ResponseEntity.ok().body(new RespostaApi().sucesso("Questao removida"));
     }
 }

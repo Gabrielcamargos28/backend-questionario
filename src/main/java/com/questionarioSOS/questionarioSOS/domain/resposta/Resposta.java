@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_questionario")
+@Table(name = "tb_resposta")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,8 +17,14 @@ public class Resposta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String resposta;
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_questao")
     private Questao questao;
+
+
+    public Resposta(String resposta, Questao questao) {
+        this.resposta = resposta;
+        this.questao = questao;
+    }
 }

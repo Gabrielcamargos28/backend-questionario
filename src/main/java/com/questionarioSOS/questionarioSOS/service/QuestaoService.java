@@ -1,10 +1,12 @@
 package com.questionarioSOS.questionarioSOS.service;
 
 import com.questionarioSOS.questionarioSOS.domain.questao.DadosCriarQuestao;
+import com.questionarioSOS.questionarioSOS.domain.questao.DadosRespostaQuestao;
 import com.questionarioSOS.questionarioSOS.domain.questao.Questao;
 import com.questionarioSOS.questionarioSOS.domain.questao.QuestaoRepository;
 import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
 import com.questionarioSOS.questionarioSOS.domain.questionario.QuestionarioRepository;
+import com.questionarioSOS.questionarioSOS.domain.resposta.Resposta;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,6 @@ public class QuestaoService {
     public void removerQuestao(Long id){
         Questao questao = questaoRepository.findById(id)
                 .orElseThrow( () -> new EntityNotFoundException("Questao não encontrada"));
-
         questaoRepository.delete(questao);
     }
 }

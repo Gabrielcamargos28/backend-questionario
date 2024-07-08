@@ -3,7 +3,6 @@ package com.questionarioSOS.questionarioSOS.Controller;
 import com.questionarioSOS.questionarioSOS.domain.DadosRemoverQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosAdicionarQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosIniciarFormulario;
-import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
 import com.questionarioSOS.questionarioSOS.service.QuestionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class QuestionarioController {
 
         questionarioService.iniciarFormulario(dados);
 
-        return ResponseEntity.ok().body(new Resposta().sucesso("Questionario iniciado com sucesso"));
+        return ResponseEntity.ok().body(new RespostaApi().sucesso("Questionario iniciado com sucesso"));
     }
 
     @PutMapping("/adicionar-questoes")
@@ -29,7 +28,7 @@ public class QuestionarioController {
 
         questionarioService.adicionarQuestoes(dados);
 
-        return ResponseEntity.ok().body(new Resposta().sucesso("Questoes adicionadas"));
+        return ResponseEntity.ok().body(new RespostaApi().sucesso("Questoes adicionadas"));
     }
     @PostMapping("/remover-questoes")
     public ResponseEntity removerQuestoes(@RequestBody DadosRemoverQuestoes dados){
@@ -42,6 +41,6 @@ public class QuestionarioController {
     public ResponseEntity removerQuestionario(@PathVariable Long id){
         questionarioService.removerQuestionario(id);
 
-        return ResponseEntity.ok().body(new Resposta().sucesso("Questionario removido com sucesso"));
+        return ResponseEntity.ok().body(new RespostaApi().sucesso("Questionario removido com sucesso"));
     }
 }
