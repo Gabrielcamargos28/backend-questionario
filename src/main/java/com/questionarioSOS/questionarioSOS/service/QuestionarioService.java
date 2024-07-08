@@ -59,7 +59,7 @@ public class QuestionarioService {
         questionarioRepository.save(questionario);
     }
 
-    public void deleteQuestionario(Long id){
+    public void deletaQuestionario(Long id){
         Questionario questionario = questionarioRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Questionario não encontrado"));
         questaoRepository.deleteByQuestionario(questionario);
 
