@@ -21,12 +21,14 @@ public class Questionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @OneToMany(mappedBy = "tb_questionario")
+
+    @OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Questao> questoes;
     private Boolean finalizado;
 
 
     public Questionario(DadosIniciarFormulario dados) {
         this.nome = dados.nome();
+        this.finalizado = false;
     }
 }

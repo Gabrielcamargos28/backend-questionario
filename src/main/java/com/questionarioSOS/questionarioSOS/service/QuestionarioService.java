@@ -9,10 +9,12 @@ import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
 import com.questionarioSOS.questionarioSOS.domain.questionario.QuestionarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class QuestionarioService {
 
     @Autowired
@@ -22,8 +24,13 @@ public class QuestionarioService {
 
 
     public void iniciarFormulario(DadosIniciarFormulario dados){
-        Questionario questionario = new Questionario(dados);
-        questionarioRepository.save(questionario);
+        try {
+            Questionario questionario = new Questionario(dados);
+            questionarioRepository.save(questionario);
+        }catch (RuntimeException e){
+            new RuntimeException("Ocorreu um erro ao iniciar o questionario");
+        }
+
     }
     public void adicionarQuestoes(DadosAdicionarQuestoes dados){
         Questionario questionario = questionarioRepository.findById(dados.idQuestionario())
@@ -59,7 +66,7 @@ public class QuestionarioService {
         questionarioRepository.save(questionario);
     }
 
-    public void deletaQuestionario(Long id){
+    public void removerQuestionario(Long id){
         Questionario questionario = questionarioRepository.findById(id).orElseThrow( () -> new EntityNotFoundException("Questionario não encontrado"));
         questaoRepository.deleteByQuestionario(questionario);
 
