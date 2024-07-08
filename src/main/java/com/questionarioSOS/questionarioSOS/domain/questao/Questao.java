@@ -23,4 +23,10 @@ public class Questao {
     @ManyToOne
     @JoinColumn(name = "id_questionario")
     private Questionario questionario;
+
+    public Questao(DadosCriarQuestao dados, Questionario questionario) {
+        this.nome = dados.nome();
+        this.comando = dados.comando();
+        this.questionario = questionario;
+    }
 }
