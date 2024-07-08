@@ -3,12 +3,12 @@ package com.questionarioSOS.questionarioSOS.service;
 import com.questionarioSOS.questionarioSOS.domain.DadosRemoverQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questao.Questao;
 import com.questionarioSOS.questionarioSOS.domain.questao.QuestaoRepository;
-import com.questionarioSOS.questionarioSOS.domain.questionario.DadosAdicionarQuestoes;
-import com.questionarioSOS.questionarioSOS.domain.questionario.DadosIniciarFormulario;
-import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
-import com.questionarioSOS.questionarioSOS.domain.questionario.QuestionarioRepository;
+import com.questionarioSOS.questionarioSOS.domain.questionario.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -71,5 +71,9 @@ public class QuestionarioService {
         questaoRepository.deleteByQuestionario(questionario);
 
         questionarioRepository.delete(questionario);
+    }
+    public Page<DadosDetalhamentoQuestionario> listarQuestionarios(@PageableDefault(size = 10) Pageable paginacao){
+        Page<DadosDetalhamentoQuestionario> page = questionarioRepository.findAll(paginacao).map(DadosDetalhamentoQuestionario::new);
+        return page;
     }
 }

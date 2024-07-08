@@ -1,5 +1,6 @@
 package com.questionarioSOS.questionarioSOS.domain.questionario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.questionarioSOS.questionarioSOS.domain.questao.Questao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class Questionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
 
     @OneToMany(mappedBy = "questionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Questao> questoes;

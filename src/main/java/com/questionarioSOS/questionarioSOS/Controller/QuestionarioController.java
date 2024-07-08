@@ -2,9 +2,13 @@ package com.questionarioSOS.questionarioSOS.Controller;
 
 import com.questionarioSOS.questionarioSOS.domain.DadosRemoverQuestoes;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosAdicionarQuestoes;
+import com.questionarioSOS.questionarioSOS.domain.questionario.DadosDetalhamentoQuestionario;
 import com.questionarioSOS.questionarioSOS.domain.questionario.DadosIniciarFormulario;
 import com.questionarioSOS.questionarioSOS.service.QuestionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +46,11 @@ public class QuestionarioController {
         questionarioService.removerQuestionario(id);
 
         return ResponseEntity.ok().body(new RespostaApi().sucesso("Questionario removido com sucesso"));
+    }
+    @GetMapping("/listar")
+    public ResponseEntity listarQuestionarios(@PageableDefault(size = 10) Pageable paginacao){
+        Page<DadosDetalhamentoQuestionario> page =  questionarioService.listarQuestionarios(paginacao);
+
+        return ResponseEntity.ok().body(page);
     }
 }

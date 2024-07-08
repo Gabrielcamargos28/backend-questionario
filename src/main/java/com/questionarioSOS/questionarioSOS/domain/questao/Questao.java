@@ -1,5 +1,6 @@
 package com.questionarioSOS.questionarioSOS.domain.questao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.questionarioSOS.questionarioSOS.domain.questionario.Questionario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,8 @@ public class Questao {
     private String nome;
     @Column(name = "comando", length = 1000)
     private String comando;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_questionario")
     private Questionario questionario;
